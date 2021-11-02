@@ -31,6 +31,16 @@ namespace InnoTech.Webshop.WebApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InnoTech.Webshop.WebApi", Version = "v1" });
             });
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("dev-cors", policy =>
+                {
+                    policy
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +51,7 @@ namespace InnoTech.Webshop.WebApi
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InnoTech.Webshop.WebApi v1"));
+                app.UseCors("dev-cors");
             }
 
             app.UseHttpsRedirection();
