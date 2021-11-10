@@ -13,4 +13,8 @@
       <Folder Include="Controllers" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\InnoTech.Webshop2021.Core\InnoTech.Webshop2021.Core.csproj" />
+    </ItemGroup>
+
 </Project>
